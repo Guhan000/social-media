@@ -41,18 +41,7 @@ export const register = async (req, res) => {
 /* LOGGING IN */
 export const login = async (req, res) => {
   try {
-    if (email === 'guest@example.com' && password === 'guestpassword') {
-        // Create a temporary guest user object
-        const guestUser = {
-          _id: '6485de268f0a683059a20660',
-          name: 'Guest User',
-          email: 'guest@example.com'
-        };
-        
-        const token = jwt.sign({ id: '6485de268f0a683059a20660' }, process.env.JWT_SECRET);
-        res.status(200).json({ token, user: guestUser });
-        return;
-    }
+    
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ msg: "User does not exist. " });
