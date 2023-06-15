@@ -78,6 +78,11 @@ const Form = () => {
     }
   };
 
+  const handleGuest = () => {
+    initialValuesLogin.email = "guest@gmail.com";
+    initialValuesLogin.password = "Guest@007";
+  }
+
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch("https://social-media-backend-1puh.onrender.com/auth/login", {
       method: "POST",
@@ -234,6 +239,18 @@ const Form = () => {
 
           {/* BUTTONS */}
           <Box>
+            { isLogin && <Button
+            fullWidth
+            type="submit"
+            onClick={handleGuest}
+            sx={{
+              m: "2rem 0 0 0",
+              p: "1rem",
+              backgroundColor: palette.primary.main,
+              color: palette.background.alt,
+              "&:hover": { color: palette.primary.main },
+            }}>Fill LogIn Credentials as Guest!
+              </Button>}
             <Button
               fullWidth
               type="submit"
